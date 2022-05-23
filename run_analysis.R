@@ -32,7 +32,7 @@ get_data <- function() {
   test_data <- read_data(test_files, labels)
   train_data <- read_data(train_files, labels)
   join_data <- merge(test_data, train_data, all = TRUE)
-  join_data$activity <- lapply(join_data$activity, map_activity)
+  join_data$activity <- sapply(join_data$activity, map_activity)
   join_data
 }
 
@@ -47,7 +47,7 @@ get_mean_data <- function(data_set) {
     df <- sorted_list[[i]]
     acc_mean <- mean(as.numeric(df$acc.mean))
     acc_std <- mean(as.numeric(df$acc.std))
-    mean_list[[i]] <- list(
+    mean_list[[i]] <- data.frame(
       subject = df$subject[1],
       activity = df$activity[[1]],
       acc.mean = acc_mean,
