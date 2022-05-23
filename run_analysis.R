@@ -78,3 +78,6 @@ if (!("data_set" %in% ls()))
   data_set <- get_data()
 ## and this step 5
 mean_data <- get_mean_data(data_set)
+## write to table
+table_file <- file("table.txt", "w")
+write.table(mean_data, table_file, row.names = FALSE)
